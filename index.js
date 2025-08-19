@@ -12,6 +12,6 @@ app.get('/', (req, res) => {
 
 app.use('/livros', require('./routes/livrosRoutes'));
 
-app.listen(3009, () => {
+app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });

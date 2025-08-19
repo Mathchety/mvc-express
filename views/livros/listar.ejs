@@ -1,16 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lista de Livros</title>
-</head>
-<body>
-  <h1>Lista de Livros</h1>
-  <ul>
-    <% livros.forEach(livro => { %>
-      <li><%= livro.titulo %> - <%= livro.autor %></li>
-    <% }); %>
-  </ul>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Livros</title>
+  </head>
+  <body>
+    <h1>Lista de Livros</h1>
+    <a
+      href="/livros/create"
+      style="
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4c72af;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+      "
+      >Criar Livro</a
+    >
+    <ul>
+      <% livros.forEach(livro => { %>
+      <li>
+        <%= livro.titulo %> - <%= livro.autor %>
+        <a
+          href="/livros/<%= livro.id %>/editar"
+          style="
+            display: inline-block;
+            padding: 3px 7px;
+            background-color: #7f46ac;
+            color: black;
+            text-decoration: none;
+            border-radius: 1px;
+            margin-bottom: 3px;
+          "
+          >Editar</a
+        >
+      </li>
+      <% }); %>
+    </ul>
+  </body>
 </html>

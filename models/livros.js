@@ -1,20 +1,26 @@
-// Usando um array em memória como nosso "banco de dados"
-const livros = [
-  { id: 1, titulo: "O Senhor dos Anéis", autor: "J.R.R. Tolkien" },
-  { id: 2, titulo: "O Hobbit", autor: "J.R.R. Tolkien" },
-];
-let proximoId = 3;
+const livrosController = require("../controllers/livrosController");
+const DB = require("../db");
 
 const livroModel = {
-  getAll: () => livros,
+  getAll: async () => {
+    const response = await DB.get("/livros");
+    return response.data;
+  },
 
-  getById: (id) => livros.find(livro => livro.id === id),
+  getById: async (id) => {
+    const response = await DB.get(`/livros/${id}`);
+    return response.data;
+  },
 
-  add: (novoLivro) => {
-    const livroParaAdicionar = { id: proximoId++, ...novoLivro };
-    livros.push(livroParaAdicionar);
-    return livroParaAdicionar;
+  add: async (novoLivro) => {
+    const response = await DB.post("/livros", novoLivro);
+    return response.data;
+  },
+
+  update: async (id, livroAtualizado) => {
+    const response = await DB.put(`/livros/${id}`, livroAtualizado);
+    return response.data;
   }
- };
+};
 
-  module.exports = livroModel;
+module.exports = livroModel;
